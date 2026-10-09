@@ -1313,7 +1313,18 @@ button {
 
 
 <body>
+<!-- SONIDOS -->
 
+<audio
+    id="musicaCumpleanos"
+    src="feliz-cumpleanos.mp3"
+    loop>
+</audio>
+
+<audio
+    id="sonidoCelebracion"
+    src="celebracion.mp3">
+</audio>
 
 <!-- =====================================================
      1. HUELLA
@@ -1945,10 +1956,7 @@ huella.addEventListener(
     "click",
     function() {
 
-        huella.classList.add(
-            "activa"
-        );
-
+        huella.classList.add("activa");
 
         document.getElementById(
             "textoHuella"
@@ -1956,7 +1964,22 @@ huella.addEventListener(
             "¡Huella reconocida! ❤️";
 
 
+        // 🎂 INICIAR FELIZ CUMPLEAÑOS
+        const musica =
+            document.getElementById(
+                "musicaCumpleanos"
+            );
+
+        musica.volume = 0.45;
+
+        musica.currentTime = 0;
+
+        musica.play().catch(() => {});
+
+
         crearCorazones(15);
+
+        crearConfeti(60);
 
 
         setTimeout(
@@ -1966,7 +1989,6 @@ huella.addEventListener(
                     "pantallaInicio"
                 );
 
-
                 fiestaInicial();
 
             },
@@ -1975,7 +1997,6 @@ huella.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -2049,15 +2070,24 @@ function abrirSobre() {
 
 function mostrarCarta() {
 
+    const musica =
+        document.getElementById(
+            "musicaCumpleanos"
+        );
+
+
+    // 💌 Bajar música
+    musica.volume = 0.12;
+
+
     crearCorazones(20);
+
 
     cambiarPantalla(
         "pantallaCarta"
     );
 
 }
-
-
 
 /* =========================================================
    REGALO
@@ -2085,11 +2115,27 @@ function abrirRegalo() {
     );
 
 
-    crearConfeti(150);
+    // 🎉 EFECTO DE CELEBRACIÓN
+
+    const celebracion =
+        document.getElementById(
+            "sonidoCelebracion"
+        );
+
+    celebracion.currentTime = 0;
+
+    celebracion.volume = 0.8;
+
+    celebracion.play().catch(() => {});
+
+
+    // 🎊 Animaciones
+
+    crearConfeti(180);
 
     crearCorazones(50);
 
-    crearGlobos(20);
+    crearGlobos(25);
 
 
     setTimeout(
